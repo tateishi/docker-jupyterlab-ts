@@ -1,0 +1,21 @@
+version: '3'
+
+
+# - default contaider 上で下記コマンドを使用しパスワードトークンを生成
+#   $ python -c "from notebook.auth import passwd; print(passwd())"
+#
+# - .envファイルに下記の行を追加
+#   PASSWD=<パスワードトークン>
+
+
+services:
+  default:
+    build:
+      context: ./jupyterlab
+      args:
+        - PASSWD
+    ports:
+      - 8888:8888
+    volumes:
+      - /etc/localtime:/etc/localtime
+      - ~/wks/data/jupyter:/home/jovyan/work
